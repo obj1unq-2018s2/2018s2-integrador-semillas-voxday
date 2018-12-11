@@ -1,0 +1,57 @@
+import Parcela.*
+import semillas.*
+
+
+describe "test" {
+	
+	const mint = new Menta(altura = 1)
+	const m2 = new Menta(altura = 0.3)
+	const soji = new Soja(altura = 0.6, anioObtencion = 2009)
+	const q1 = new Quinoa(altura = 1, horasToleradas = 12,anioObtencion = 2010  )
+	const q2 = new Quinoa(altura = 1 ,horasToleradas = 9 ,anioObtencion = 2001  )
+	const soji2 = new SojaTransgenica (altura = 0.8, anioObtencion = 2000)
+	const parce = new Parcela(largo = 1,ancho = 20, horasDeSol = 8)
+	const s1 = new Soja(altura = 1.6, anioObtencion = 2009)
+	const s2 = new Soja(altura = 1.6, anioObtencion = 2009)
+	const s3 = new Soja(altura = 1.5, anioObtencion = 2000)
+	const s4 = new Soja(altura = 1.5, anioObtencion = 2004)
+	const s5 = new Soja(altura = 1.5, anioObtencion = 2000)
+	
+	
+	
+	test "menta de 1 metro " {
+		assert.equals(3, mint.espacioOcupado())
+		assert.that(mint.daNuevasSemillas())
+	}
+	
+	test "menta de 0.3 metros"{
+		assert.equals(0.9, m2.espacioOcupado())
+		assert.notThat(m2.daNuevasSemillas())
+	}
+	
+	test "soji"{
+		assert.equals(0.3,soji.espacioOcupado())
+		assert.equals(7, soji.horasDeSolQueTolera())
+		assert.notThat(soji.daNuevasSemillas())
+	}
+	
+	test "quinoas"{
+		assert.that(q1.daNuevasSemillas())
+		assert.that(q2.daNuevasSemillas())
+	}
+	
+	test "soja transgenica "{
+		assert.notThat(soji2.daNuevasSemillas())
+	}
+	
+	test "parcela"{
+		assert.equals(4,parce.cantidadMaxima())
+		assert.equals(20,parce.superficie())
+		parce.plantarUnaPlanta(s1)
+	    parce.plantarUnaPlanta(s5)
+	    parce.plantarUnaPlanta(s2)
+	    parce.plantarUnaPlanta(s3)
+	    assert.that(parce.parcelaLLena())
+	    //parce.plantar(s4)
+	}
+}
